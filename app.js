@@ -9,7 +9,7 @@ app.get('/', function (request, response) {
 });
 
 app.get('/db', function (request, response) {
-    pg.connect(process.env.DATABASE_URL, function(err, client)){
+    pg.connect(process.env.DATABASE_URL, function(err, client){
         client.query("SELECT * FRON test", function(err, result){
             if(err) throwerr;
             response.send(JSON.stringify(result));
@@ -17,7 +17,7 @@ app.get('/db', function (request, response) {
                 if (err) throw err;
             });
         });
-    };
+    });
 });
 
 app.listen(app.get('port'), function () {
