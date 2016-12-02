@@ -9,18 +9,15 @@ app.get('/', function (request, response) {
 });
 
 app.get('/db', function (request, response) {
-
-    pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-        client.query("SELECT * FROM test;", function(err,result){
-            if (err) {
-                console.error(err);
-                response.send("Error " + err);
-            } else {
-                response.send(JSON.stringfy(result));
-            }
-            done();
+    pg.connect(process.env.DATABASE_URL, function(err, client)){
+        client.query("SELECT * FRON test", function(err, result){
+            if(err) throwerr;
+            response.send(JSON.stringify(result));
+            client.end(function (err){
+                if (err) throw err;
+            });
         });
-    });
+    };
 });
 
 app.listen(app.get('port'), function () {
