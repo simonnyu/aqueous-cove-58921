@@ -17,9 +17,6 @@ app.get('/db', function (request, response) {
             } else {
                 response.send(result);
             }
-            client.end(function (err){
-                if (err) console.error(err);
-            });
         });
         client.query('INSERT INTO test (\'text\') VALUE(\'insert test\')', function (err, result) {
             if (err) {
@@ -28,11 +25,13 @@ app.get('/db', function (request, response) {
             } else {
                 response.send(result);
             }
-            client.end(function (err){
-                if (err) console.error(err);
-            });
+        });
+        client.end(function (err){
+            if (err) console.error(err);
         });
     });
+
+
 });
 
 app.listen(app.get('port'), function () {
