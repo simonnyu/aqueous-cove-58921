@@ -17,7 +17,8 @@
     "url": "https://github.com/simonnyu/aqueous-cove-58921/issues"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "pg": "6.1.0"
   },
   "homepage": "https://github.com/simonnyu/aqueous-cove-58921#readme"
 }
