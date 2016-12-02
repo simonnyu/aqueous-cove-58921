@@ -10,7 +10,7 @@ app.get('/', function (request, response) {
 
 app.get('/db', function (request, response) {
     pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-        client.query('SELECT * FROM test', function (err, result) {
+        client.query('SELECT * FROM test;', function (err, result) {
             if (err) {
                 console.error(err);
                 response.send("Error " + err);
@@ -25,7 +25,7 @@ app.get('/db', function (request, response) {
 });
 app.get('/db_insert', function (request, response) {
     pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-        client.query('INSERT INTO test (\'text\') VALUE(\'insert test\')', function (err, result) {
+        client.query("INSERT INTO test (text) VALUE('insert test');", function (err, result) {
             if (err) {
                 console.error(err);
                 response.send("Error " + err);
