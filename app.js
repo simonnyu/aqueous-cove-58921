@@ -22,21 +22,6 @@ app.get('/db', function (request, response) {
             if (err) console.error(err);
         });
     });
-    pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-        client.query('INSERT INTO test (\'text\') VALUE(\'insert test\')', function (err, result) {
-            if (err) {
-                console.error(err);
-                response.send("Error " + err);
-            } else {
-                response.send(result);
-            }
-        });
-        client.end(function (err){
-            if (err) console.error(err);
-        });
-    });
-
-
 });
 
 app.listen(app.get('port'), function () {
