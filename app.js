@@ -38,6 +38,36 @@ app.get('/db_insert', function (request, response) {
         });
     });
 });
+app.get('/db_update', function (request, response) {
+    pg.connect(process.env.DATABASE_URL, function (err, client, done) {
+        client.query("UPDATE test SET text = '"+post.value+"' WHERE id = '"+post.value+"'", function (err, result) { //post.value我自己取的喔XD
+            if (err) {
+                console.error(err);
+                response.send("Error " + err);
+            } else {
+                response.send(result);
+            }
+            client.end(function (err){
+                if (err) console.error(err);
+            });
+        });
+    });
+});
+app.get('/db_delete', function (request, response) {
+    pg.connect(process.env.DATABASE_URL, function (err, client, done) {
+        client.query("DELETE FROM test WHERE id = '"+post.value+"'", function (err, result) { //post.value我自己取的喔XD
+            if (err) {
+                console.error(err);
+                response.send("Error " + err);
+            } else {
+                response.send(result);
+            }
+            client.end(function (err){
+                if (err) console.error(err);
+            });
+        });
+    });
+});
 
 app.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'));
