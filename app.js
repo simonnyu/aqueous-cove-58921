@@ -9,12 +9,16 @@ app.get('/', function (request, response) {
 });
 
 app.get('/db', function (request, response) {
+    pg.defaults.ssl = true;
     pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-        client
-            .query("SELECT * FROM test;")
-            .on('row',function(row){
-                response.send(JSON.stringify(row));
-            });
+        client.query("SELECT * FROM test;", function(err,result){
+            done();
+            var i = 0;
+            while(result){
+                response.send(result.row[i]);
+                i++;
+            }
+        });
     });
 });
 
