@@ -15,7 +15,7 @@ app.get('/db', function (request, response) {
                 console.error(err);
                 response.send("Error " + err);
             } else {
-                response.send(JSON.stringify(result));
+                response.send(JSON.stringify(result.rows));
             }
             client.end(function (err){
                 if (err) console.error(err);
